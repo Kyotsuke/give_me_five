@@ -8,8 +8,16 @@ div{
 	text-align: center;
 }
 
-.pad75{
-	padding: 75px;
+.pad5{
+	padding: 5px;
+}
+
+.pad12{
+	padding: 12px;
+}
+
+.pad70{
+	padding: 70px;
 }
 /* ***** TITRES ***** */
 h1, h2, h3{
@@ -21,6 +29,12 @@ ul, li{
 	list-style: none;
 	text-align: center;
 	padding: 0;
+}
+
+.over{
+	overflow-y: auto;
+	margin: 0;
+	height: 750px;
 }
 
 .liste .nom, .liste .score{
