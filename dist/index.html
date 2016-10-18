@@ -29,12 +29,12 @@
 						</li>
 					</ul>
 
-				<!-- Liste des éléves -->
+			<!-- Liste des éléves -->
 				<div class="over">
 					<ul class="liste">
 						<li>
-							<div class="col-md-4 nom"></div>
-							<div class="col-md-4 score"></div>
+							<div class="col-md-4"></div>
+							<div class="col-md-4"></div>
 							<div class="col-md-4">
 								<label for="present" class="present"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>
 								<input type="radio" name="checkbox">
@@ -48,26 +48,51 @@
 						</li>
 					</ul>
 				</div>
+
+				<div class="new center hidden">
+					<label for="nom">Nom :</label>
+					<input type="text" name="nom" placeholder="Martin" id="input_nom">
+
+					<label for="prenom">Prénom :</label>
+					<input type="text" name="prenom" placeholder="Jean Charles" id="input_prenom">
+
+						<br>
+
+					<label for="img_link">Liens de l'image :</label>
+					<input type="text" name="img_link" placeholder="images/jean.jpg ou http://givemefive.fr/jean.jpg" id="input_img">
+						
+					<label for="mail">E-Mail :</label>
+					<input type="text" name="mail" placeholder="jean-charlounet@gmail.com" id="input_mail">
+
+						<br>
+
+					<button id="submit_add">Ajouter</button>
 				</div>
+
+				<div class="col-md-12 center pad12">
+					<button type="button" value="AJOUTER" class="ajout"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></button>
+					<button type="button" value="RETIRER"><i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></button>
+				</div>
+			</div>
 			<!-- PROFIL PERSO -->			
-				<div class="col-md-8">
+				<div class="col-md-8 profil">
 				<!-- Partie gauche -->
 					<div class="col-md-3 center">
 					<!-- Nom -->
 						<div class="col-md-12">
-							<h3>NOM</h3>
+							<h3 id="nom"></h3>
 						</div>
 					<!-- Prénom -->
 						<div class="col-md-12">
-							<h3>PRENOM</h3>
+							<h3 id="prenom"></h3>
 						</div>
 					<!-- Image utilisateur -->
 						<div class="col-md-12">
-							<img src="images/user1.png" alt="">
+							<div id="image"></div>
 						</div>
 					<!-- Adresse mail -->
 						<div class="col-md-12">
-							<p>Mail : <a href="mailto:zaeaze">azerty@gmail.com</a></p>
+							<p>Mail : <a href="mailto:zaeaze" id="mail">azerty@gmail.com</a></p>
 						</div>
 					<!-- Bouton modifier -->
 						<div class="col-md-12">
@@ -102,9 +127,13 @@
 						</div>
 					<!-- Nombre de passage au tableau total -->
 						<div class="col-md-12">
-							<h4>Passage au tableau : <span id="passage"></span></h4>
+							<h4>Passage au tableau : <span id="tableau"></span></h4>
 						</div>
 					</div>
+				</div>
+			<!-- HEURE DATE -->
+				<div class="col-md-12">
+					HEURE DATE
 				</div>
 			</div>
 		</div>

@@ -42,6 +42,10 @@ ul, li{
 	padding: 3px;
 }
 
+.liste li{
+	cursor: pointer;
+}
+
 .present{
 	color: green;
 }
@@ -54,7 +58,38 @@ ul, li{
 	color: red;
 }
 
+/* ***** NEW USER ***** */
+.new{
+	width: 95%;
+	float: left;
+	bottom: 125px;
+	padding: 15px;
+	position: absolute;
+	background-color: red;
+	z-index: 10;
+}
+
+input[type="text"], input[type="submit"]{
+	margin: 5px;
+}
+
+/* ***** PROFIL ***** */
+.profil{
+	padding: 100px 0px 100px 0px;
+}
+
 /* ***** IMAGES ***** */
-img{
+#image{
 	width: 250px;
+	height: 250px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* ***** SELECTION ***** */
+.selected{
+	font-size: 1.1em!important;
+	font-weight: bold;
+	background-color: red!important;
 }
