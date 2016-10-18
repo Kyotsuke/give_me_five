@@ -3,12 +3,44 @@ div{
 	border: 1px solid black;
 }
 
-
-/* ***** TITRES ***** */
-h1{
+/* ***** GLOBAL ***** */
+.center{
 	text-align: center;
 }
 
-h2{
+.pad75{
+	padding: 75px;
+}
+/* ***** TITRES ***** */
+h1, h2, h3{
 	text-align: center;
+}
+
+/* ***** LISTES ***** */
+ul, li{
+	list-style: none;
+	text-align: center;
+	padding: 0;
+}
+
+.liste .nom, .liste .score{
+	font-size: 20px;
+	padding: 3px;
+}
+
+.present{
+	color: green;
+}
+
+.retard{
+	color: orange;
+}
+
+.absent{
+	color: red;
+}
+
+/* ***** IMAGES ***** */
+img{
+	width: 250px;
 }

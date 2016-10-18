@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Give me five</title>
+		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
@@ -18,11 +19,86 @@
 			<div class="row">
 			<!-- LISTE -->			
 				<div class="col-md-4">
-					<h2>NOM</h2>
+
+					<ul>
+						<li>
+							<div class="col-md-4"><h2>NOM</h2></div>
+							<div class="col-md-4"><h2>SCORE</h2></div>
+							<div class="col-md-4"><h2>STATUS</h2></div>
+						</li>
+					</ul>
+
+					<ul>
+						<li class="liste">
+							<div class="col-md-4 nom">NOM</div>
+							<div class="col-md-4 score">SCORE</div>
+							<div class="col-md-4">
+								<label for="present" class="present"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>
+								<input type="checkbox">
+
+								<label for="retard" class="retard"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></i></label>
+								<input type="checkbox">
+
+								<label for="absent" class="absent"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></i></label>
+								<input type="checkbox">
+							</div>
+						</li>
+					</ul>
 				</div>
 			<!-- PROFIL PERSO -->			
 				<div class="col-md-8">
-					<h1>Give me Five</h1>
+				<!-- Partie gauche -->
+					<div class="col-md-3 center">
+						<div class="col-md-12">
+							<h3>NOM</h3>
+						</div>
+
+						<div class="col-md-12">
+							<h3>PRENOM</h3>
+						</div>
+
+						<div class="col-md-12">
+							<img src="images/user1.png" alt="">
+						</div>
+
+						<div class="col-md-12">
+							<p>Mail : <a href="mailto:zaeaze">azerty@gmail.com</a></p>
+						</div>
+
+						<div class="col-md-12">
+							<button type="button" value="MODIFIER">MODIFIER</button>
+						</div>
+					</div>
+
+					<div class="col-md-9 center">
+						<div class="col-md-12 pad75">
+							
+						</div>
+
+						<div class="col-md-12">
+							<h4>Score : <span id="score"></span></h4>
+						</div>
+
+						<div class="col-md-12">
+							<h4>Nombre de présences : <span id="presence"></span></h4>
+						</div>
+
+						<div class="col-md-12">
+							<h4>Nombre de retards : <span id="retard"></span></h4>
+						</div>
+
+						<div class="col-md-12">
+							<h4>Nombre d'absences : <span id="absence"></span></h4>
+						</div>
+
+						<div class="col-md-12">
+							<h4>Participations : <span id="participation"></span></h4>
+						</div>
+
+						<div class="col-md-12">
+							<h4>Passage au tableau : <span id="passage"></span></h4>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
