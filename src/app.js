@@ -1,10 +1,11 @@
 import init from './student.list';
 import Student from './student.class';
+import ajouter from './student.add';
 
 // LISTE ÉLÉVES
 let student = [
 	new Student("Mattieu", "VENDEVILLE", "images/mattieu.jpg", "mattieu.vendeville@gmail.com"),
-	new Student("Joël", "ALVES CANTEIRO", "images/joel.jpg", "qwerty@gmail.com"),
+	new Student("Joël", "ALVES", "images/joel.jpg", "qwerty@gmail.com"),
 	new Student('Clément','TEBOUL','images/clementt.jpg', "zearza@gmail.com"),
 	new Student('Victor','MOUTTON','images/victor.jpg', "gfqsdsq@gmail.com"),
 	new Student('Bastien','LHUAIRE','images/bastien.jpg', "hyrtfdg@gmail.com"),
@@ -18,3 +19,4 @@ let student = [
 ]
 
 init(student);
+ajouter(student);

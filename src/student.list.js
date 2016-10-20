@@ -1,5 +1,4 @@
 import $ from "jquery";
-import ajouter from './student.add';
 
 export default function init(student){
 
@@ -13,19 +12,23 @@ export default function init(student){
 		let li 		= $one.clone(),
 			eleve 	= list_student[j];
 
+		eleve.score = (eleve.presence * 10) + (eleve.retard * (-2))+ (eleve.absence * (-10)) + (eleve.participation * 5) + (eleve.tableau * 8);
+
 		eleve.id 	= j;
 
-		let ajout 	= '<li class="eleve'+j+'"><div class="col-md-4 pad12">'+ eleve.prenom + ' ' + eleve.nom +'</div>'+
+		let ajout 	= 	'<li class="eleve eleve'+j+'"><div class="col-md-4 pad12">'+ eleve.prenom + ' ' + eleve.nom +'</div>'+
 						'<div class="col-md-4 pad12">'+ eleve.score + '</div>'+
 						'<div class="col-md-4 status">'+
 						'<label for="present" class="present pad5"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>'+
-						'<input type="radio" name="checkbox'+j+'">'+
+						'<input type="radio" name="checkbox'+j+'" value="present">'+
 						'<label for="retard" class="retard pad5"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></i></label>'+
-						'<input type="radio" name="checkbox'+j+'">'+
+						'<input type="radio" name="checkbox'+j+'" value="retard">'+
 						'<label for="absent" class="absent pad5"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></i></label>'+
-						'<input type="radio" name="checkbox'+j+'"></div></li>';
+						'<input type="radio" name="checkbox'+j+'" value="absent"></div></li>';
 
 		$liste.append(ajout);
+		
+		console.log(eleve.score);
 	};
 
 	$(".eleve0").toggleClass('selected');
@@ -44,6 +47,26 @@ export default function init(student){
 		})
 	});
 
+	$('.liste li').on('click', function(){
+		let index = $( ".liste li" ).index( this ),
+			id_eleve = student[index],
+			status = $('input:radio[name=checkbox'+index+']:checked')
+		
+		console.log(status.val());
+
+		if (status.val() == "present") {
+			id_eleve.presence += 1;
+		} else if (status.val() == "retard"){
+			id_eleve.retard += 1;
+		} else {
+			id_eleve.absence += 1;
+		}
+
+		return init(student);		
+	})
+
+
+
 
 	function card(id){
 		let put = student[id];
@@ -60,6 +83,4 @@ export default function init(student){
 		$('#tableau').text(put.tableau);
 
 	}
-
-	ajouter(student);
 }

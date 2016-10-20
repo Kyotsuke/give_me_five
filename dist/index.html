@@ -16,9 +16,9 @@
 				</div>
 			</div>
 
-			<div class="row">
-			<!-- LISTE -->			
-				<div class="col-md-4">
+		<!-- LISTE -->
+			<div class="row">		
+				<div class="col-md-4 border bloc-liste shadow">
 
 					<ul>
 					<!-- Propritétés liste -->
@@ -30,7 +30,7 @@
 					</ul>
 
 			<!-- Liste des éléves -->
-				<div class="over">
+				<div class="over border shadow center">
 					<ul class="liste">
 						<li>
 							<div class="col-md-4"></div>
@@ -49,7 +49,7 @@
 					</ul>
 				</div>
 
-				<div class="new center">
+				<div class="new center shadow">
 					<label for="nom">Nom :</label>
 					<input type="text" name="nom" placeholder="Martin" id="input_nom">
 
@@ -66,18 +66,18 @@
 
 						<br>
 
-					<button id="submit_add">Ajouter</button>
+					<p class="m_top20"><span class="submit_add">Ajouter</span></p>
 				</div>
 
 				<div class="col-md-12 center pad12">
-					<button type="button" value="AJOUTER" class="ajout"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></button>
-					<button type="button" value="RETIRER"><i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></button>
+					<p class="ajout"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></p>
 				</div>
 			</div>
-			<!-- PROFIL PERSO -->			
-				<div class="col-md-8 profil">
+		<!-- PROFIL PERSO -->
+			<div class="m20">
+				<div class="col-md-7 col-md-offset-1 profil shadow center">
 				<!-- Partie gauche -->
-					<div class="col-md-3 center">
+					<div class="col-md-4 col-md-offset-1 gauche">
 					<!-- Nom -->
 						<div class="col-md-12">
 							<h3 id="nom"></h3>
@@ -96,11 +96,12 @@
 						</div>
 					<!-- Bouton modifier -->
 						<div class="col-md-12">
-							<button type="button" value="MODIFIER">MODIFIER</button>
+							<p><span class="modify">Modifier</span></p>
 						</div>
 					</div>
 
-					<div class="col-md-9 center">
+				<!-- Partie droite -->
+					<div class="col-md-4 col-md-offset-2 droite">
 					<!-- Espacement -->
 						<div class="col-md-12 pad70">
 							
@@ -131,6 +132,7 @@
 						</div>
 					</div>
 				</div>
+			</div>
 			<!-- HEURE DATE -->
 				<div class="col-md-12">
 					HEURE DATE

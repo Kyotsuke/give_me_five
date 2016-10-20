@@ -3,18 +3,20 @@ import init from './student.list';
 import Student from './student.class';
 
 export default function ajouter(student){
-	let hide = $('.new').css("display");
+	let add = $('.new');
 
 
 	$('.ajout').on('click', function(){
-		if (hide == "none") {
-			$('.new').fadeIn();
+		if (!add.is(':visible')) {
+			console.log("Off");
+			add.fadeIn();
 		} else {
-			$('.new').fadeOut();
+			console.log("On");
+			add.fadeOut();
 		}
 	});
 
-	$('#submit_add').on('click', function(){
+	$('.submit_add').on('click', function(){
 
 		let new_nom = $('#input_nom').val(),
 			new_prenom = $('#input_prenom').val(),
@@ -23,7 +25,13 @@ export default function ajouter(student){
 
 		let add_student = new Student(new_nom, new_prenom, new_img, new_mail);
 		student.push(add_student);
+		
+		add.fadeOut();
 		init(student);
-		$('.new').toggleClass("hidden");
+
+		$('#input_nom').val("");
+		$('#input_prenom').val("");
+		$('#input_img').val("");
+		$('#input_mail').val("");
 	})
 }

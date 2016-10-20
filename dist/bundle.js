@@ -54,12 +54,17 @@
 
 	var _student4 = _interopRequireDefault(_student3);
 
+	var _student5 = __webpack_require__(3);
+
+	var _student6 = _interopRequireDefault(_student5);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// LISTE ÉLÉVES
-	var student = [new _student4.default("Mattieu", "VENDEVILLE", "images/mattieu.jpg", "mattieu.vendeville@gmail.com"), new _student4.default("Joël", "ALVES CANTEIRO", "images/joel.jpg", "qwerty@gmail.com"), new _student4.default('Clément', 'TEBOUL', 'images/clementt.jpg', "zearza@gmail.com"), new _student4.default('Victor', 'MOUTTON', 'images/victor.jpg', "gfqsdsq@gmail.com"), new _student4.default('Bastien', 'LHUAIRE', 'images/bastien.jpg', "hyrtfdg@gmail.com"), new _student4.default('Loan', 'CAMPAN', 'images/loan.jpg', "erqsdeqf@gmail.com"), new _student4.default('Stan', 'XIONG', 'images/stan.jpg', "lkoijhubvgb@gmail.com"), new _student4.default('Pierre', 'SAIGOT', 'images/pierre.jpg', "xdfvgbn@gmail.com"), new _student4.default('Axel', 'COQUIN', 'images/axel.jpg', "iuygfvhu@gmail.com"), new _student4.default('Félix', 'NAHON', 'images/felix.jpg', "olkiyfc@gmail.com"), new _student4.default('Julien', 'GASTINEAU', 'images/julien.jpg', "rdbvfgjhf@gmail.com"), new _student4.default('Clément', 'DUSSOL', 'images/clementd.jpg', "oijhbg@gmail.com")];
+	var student = [new _student4.default("Mattieu", "VENDEVILLE", "images/mattieu.jpg", "mattieu.vendeville@gmail.com"), new _student4.default("Joël", "ALVES", "images/joel.jpg", "qwerty@gmail.com"), new _student4.default('Clément', 'TEBOUL', 'images/clementt.jpg', "zearza@gmail.com"), new _student4.default('Victor', 'MOUTTON', 'images/victor.jpg', "gfqsdsq@gmail.com"), new _student4.default('Bastien', 'LHUAIRE', 'images/bastien.jpg', "hyrtfdg@gmail.com"), new _student4.default('Loan', 'CAMPAN', 'images/loan.jpg', "erqsdeqf@gmail.com"), new _student4.default('Stan', 'XIONG', 'images/stan.jpg', "lkoijhubvgb@gmail.com"), new _student4.default('Pierre', 'SAIGOT', 'images/pierre.jpg', "xdfvgbn@gmail.com"), new _student4.default('Axel', 'COQUIN', 'images/axel.jpg', "iuygfvhu@gmail.com"), new _student4.default('Félix', 'NAHON', 'images/felix.jpg', "olkiyfc@gmail.com"), new _student4.default('Julien', 'GASTINEAU', 'images/julien.jpg', "rdbvfgjhf@gmail.com"), new _student4.default('Clément', 'DUSSOL', 'images/clementd.jpg', "oijhbg@gmail.com")];
 
 	(0, _student2.default)(student);
+	(0, _student6.default)(student);
 
 /***/ },
 /* 1 */
@@ -76,10 +81,6 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _student = __webpack_require__(3);
-
-	var _student2 = _interopRequireDefault(_student);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function init(student) {
@@ -94,11 +95,15 @@
 			var li = $one.clone(),
 			    eleve = list_student[j];
 
+			eleve.score = eleve.presence * 10 + eleve.retard * -2 + eleve.absence * -10 + eleve.participation * 5 + eleve.tableau * 8;
+
 			eleve.id = j;
 
-			var ajout = '<li class="eleve' + j + '"><div class="col-md-4 pad12">' + eleve.prenom + ' ' + eleve.nom + '</div>' + '<div class="col-md-4 pad12">' + eleve.score + '</div>' + '<div class="col-md-4 status">' + '<label for="present" class="present pad5"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>' + '<input type="radio" name="checkbox' + j + '">' + '<label for="retard" class="retard pad5"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></i></label>' + '<input type="radio" name="checkbox' + j + '">' + '<label for="absent" class="absent pad5"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></i></label>' + '<input type="radio" name="checkbox' + j + '"></div></li>';
+			var ajout = '<li class="eleve eleve' + j + '"><div class="col-md-4 pad12">' + eleve.prenom + ' ' + eleve.nom + '</div>' + '<div class="col-md-4 pad12">' + eleve.score + '</div>' + '<div class="col-md-4 status">' + '<label for="present" class="present pad5"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>' + '<input type="radio" name="checkbox' + j + '" value="present">' + '<label for="retard" class="retard pad5"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></i></label>' + '<input type="radio" name="checkbox' + j + '" value="retard">' + '<label for="absent" class="absent pad5"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></i></label>' + '<input type="radio" name="checkbox' + j + '" value="absent"></div></li>';
 
 			$liste.append(ajout);
+
+			console.log(eleve.score);
 		};
 
 		(0, _jquery2.default)(".eleve0").toggleClass('selected');
@@ -117,6 +122,24 @@
 			});
 		});
 
+		(0, _jquery2.default)('.liste li').on('click', function () {
+			var index = (0, _jquery2.default)(".liste li").index(this),
+			    id_eleve = student[index],
+			    status = (0, _jquery2.default)('input:radio[name=checkbox' + index + ']:checked');
+
+			console.log(status.val());
+
+			if (status.val() == "present") {
+				id_eleve.presence += 1;
+			} else if (status.val() == "retard") {
+				id_eleve.retard += 1;
+			} else {
+				id_eleve.absence += 1;
+			}
+
+			return init(student);
+		});
+
 		function card(id) {
 			var put = student[id];
 			(0, _jquery2.default)('#nom').text(put.nom);
@@ -131,8 +154,6 @@
 			(0, _jquery2.default)('#participation').text(put.participation);
 			(0, _jquery2.default)('#tableau').text(put.tableau);
 		}
-
-		(0, _student2.default)(student);
 	}
 
 /***/ },
@@ -10387,17 +10408,19 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function ajouter(student) {
-		var hide = (0, _jquery2.default)('.new').css("display");
+		var add = (0, _jquery2.default)('.new');
 
 		(0, _jquery2.default)('.ajout').on('click', function () {
-			if (hide == "none") {
-				(0, _jquery2.default)('.new').fadeIn();
+			if (!add.is(':visible')) {
+				console.log("Off");
+				add.fadeIn();
 			} else {
-				(0, _jquery2.default)('.new').fadeOut();
+				console.log("On");
+				add.fadeOut();
 			}
 		});
 
-		(0, _jquery2.default)('#submit_add').on('click', function () {
+		(0, _jquery2.default)('.submit_add').on('click', function () {
 
 			var new_nom = (0, _jquery2.default)('#input_nom').val(),
 			    new_prenom = (0, _jquery2.default)('#input_prenom').val(),
@@ -10406,8 +10429,14 @@
 
 			var add_student = new _student4.default(new_nom, new_prenom, new_img, new_mail);
 			student.push(add_student);
+
+			add.fadeOut();
 			(0, _student2.default)(student);
-			(0, _jquery2.default)('.new').toggleClass("hidden");
+
+			(0, _jquery2.default)('#input_nom').val("");
+			(0, _jquery2.default)('#input_prenom').val("");
+			(0, _jquery2.default)('#input_img').val("");
+			(0, _jquery2.default)('#input_mail').val("");
 		});
 	}
 
