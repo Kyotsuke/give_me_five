@@ -1,6 +1,5 @@
 import init from './student.list';
 import Student from './student.class';
-import ajouter from './student.add';
 
 // LISTE ÉLÉVES
 let student = [
@@ -19,4 +18,3 @@ let student = [
 ]
 
 init(student);
-ajouter();

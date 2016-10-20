@@ -67,6 +67,7 @@ ul, li{
 	position: absolute;
 	background-color: red;
 	z-index: 10;
+	display: none;
 }
 
 input[type="text"], input[type="submit"]{

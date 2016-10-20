@@ -1,4 +1,5 @@
 import $ from "jquery";
+import ajouter from './student.add';
 
 export default function init(student){
 
@@ -31,9 +32,6 @@ export default function init(student){
 	card(0);
 
 	$('.liste').on('click', 'li', function(){
-		$('.status').on('click', function(){
-			return false;
-		})
 		let index = $( ".liste li" ).index( this ),
 			id_eleve = list_student[index];
 
@@ -62,4 +60,6 @@ export default function init(student){
 		$('#tableau').text(put.tableau);
 
 	}
+
+	ajouter(student);
 }
