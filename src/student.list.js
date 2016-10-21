@@ -27,8 +27,6 @@ export default function init(student){
 						'<input type="radio" name="checkbox'+j+'" value="absent"></div></li>';
 
 		$liste.append(ajout);
-		
-		console.log(eleve.score);
 	};
 
 	$(".eleve0").toggleClass('selected');
@@ -47,8 +45,8 @@ export default function init(student){
 		})
 	});
 
-	$('.liste li').on('click', function(){
-		let index = $( ".liste li" ).index( this ),
+	$('.status').on('click', function(){
+		let index = $( ".status" ).index( this ),
 			id_eleve = student[index],
 			status = $('input:radio[name=checkbox'+index+']:checked')
 		
@@ -61,6 +59,8 @@ export default function init(student){
 		} else {
 			id_eleve.absence += 1;
 		}
+
+
 
 		return init(student);		
 	})

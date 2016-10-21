@@ -102,8 +102,6 @@
 			var ajout = '<li class="eleve eleve' + j + '"><div class="col-md-4 pad12">' + eleve.prenom + ' ' + eleve.nom + '</div>' + '<div class="col-md-4 pad12">' + eleve.score + '</div>' + '<div class="col-md-4 status">' + '<label for="present" class="present pad5"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>' + '<input type="radio" name="checkbox' + j + '" value="present">' + '<label for="retard" class="retard pad5"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></i></label>' + '<input type="radio" name="checkbox' + j + '" value="retard">' + '<label for="absent" class="absent pad5"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></i></label>' + '<input type="radio" name="checkbox' + j + '" value="absent"></div></li>';
 
 			$liste.append(ajout);
-
-			console.log(eleve.score);
 		};
 
 		(0, _jquery2.default)(".eleve0").toggleClass('selected');
@@ -122,8 +120,8 @@
 			});
 		});
 
-		(0, _jquery2.default)('.liste li').on('click', function () {
-			var index = (0, _jquery2.default)(".liste li").index(this),
+		(0, _jquery2.default)('.status').on('click', function () {
+			var index = (0, _jquery2.default)(".status").index(this),
 			    id_eleve = student[index],
 			    status = (0, _jquery2.default)('input:radio[name=checkbox' + index + ']:checked');
 

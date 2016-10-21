@@ -1,8 +1,11 @@
-/* ***** TESTS ***** */
+/* ***** FONT ***** */
+	@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700');
 
 /* ***** GLOBAL ***** */
 	body{
 		background-image: url("../images/fond.png");
+		font-family: 'Josefin Sans', sans-serif;
+		font-weight: bold;
 	}
 
 	.center{
@@ -44,6 +47,8 @@
 
 	h1{
 		color: white;
+		padding-bottom: 10px;
+		border-bottom: 1px double white;
 	}
 
 /* ***** LISTE ***** */
@@ -66,13 +71,13 @@
 	}
 
 	.bloc-liste{
-		background-color: rgba(246, 246, 246, 0.3);
+		background-color: rgba(246, 246, 246, 0.4);
 		border-radius: 25px;
-		color: white;
+		color: black;
 	}
 
 	.over{
-		background-color: rgba(246, 246, 246, 0.3);
+		background-color: rgba(246, 246, 246, 0.4);
 		overflow-y: auto;
 		margin: 0;
 		height: 50em;
@@ -145,8 +150,8 @@
 /* ***** PROFIL ***** */
 	.profil{
 		padding: 100px 0px 100px 0px;
-		background-color: rgba(246, 246, 246, 0.3);
-		color: white;
+		background-color: rgba(246, 246, 246, 0.4);
+		color: black;
 		border-radius: 25px;
 		border: 2px solid black;
 		text-align: center;
