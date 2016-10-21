@@ -4,6 +4,8 @@ export default function init(student){
 
 	let list_student = student;
 
+	let get_id = 0;
+
 	let $liste = $('.liste'),
 		$one 	= $liste.children('li').detach();
 
@@ -12,29 +14,26 @@ export default function init(student){
 		let li 		= $one.clone(),
 			eleve 	= list_student[j];
 
-		eleve.score = (eleve.presence * 10) + (eleve.retard * (-2))+ (eleve.absence * (-10)) + (eleve.participation * 5) + (eleve.tableau * 8);
-
 		eleve.id 	= j;
 
-		let ajout 	= 	'<li class="eleve eleve'+j+'"><div class="col-md-4 pad12">'+ eleve.prenom + ' ' + eleve.nom +'</div>'+
-						'<div class="col-md-4 pad12">'+ eleve.score + '</div>'+
+		let ajout 	= 	'<li class="eleve eleve'+j+'"><div class="col-md-4 pad12 nom_prenom">'+ eleve.prenom + ' ' + eleve.nom +'</div>'+
+						'<div class="col-md-4 pad12">'+ eleve.mail +'</div>'+
 						'<div class="col-md-4 status">'+
-						'<label for="present" class="present pad5"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>'+
-						'<input type="radio" name="checkbox'+j+'" value="present">'+
-						'<label for="retard" class="retard pad5"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></i></label>'+
-						'<input type="radio" name="checkbox'+j+'" value="retard">'+
-						'<label for="absent" class="absent pad5"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></i></label>'+
-						'<input type="radio" name="checkbox'+j+'" value="absent"></div></li>';
+						'<i class="fa fa-check-circle fa-2x set_present pad5" aria-hidden="true"></i>'+
+						'<i class="fa fa-clock-o fa-2x set_retard pad5" aria-hidden="true"></i>'+
+						'<i class="fa fa-ban fa-2x set_absent pad5" aria-hidden="true"></i></div></li>';
 
 		$liste.append(ajout);
 	};
 
 	$(".eleve0").toggleClass('selected');
 	card(0);
+	modif_card(get_id);
 
 	$('.liste').on('click', 'li', function(){
 		let index = $( ".liste li" ).index( this ),
-			id_eleve = list_student[index];
+			id_eleve = list_student[index],
+			get_id = index;
 
 		$(".selected").toggleClass('selected');
 		$(".eleve"+index).toggleClass('selected');
@@ -45,24 +44,43 @@ export default function init(student){
 		})
 	});
 
-	$('.status').on('click', function(){
-		let index = $( ".status" ).index( this ),
-			id_eleve = student[index],
-			status = $('input:radio[name=checkbox'+index+']:checked')
+	$('.set_present').on('click', function(){
+		let index = $( ".set_present" ).index( this ),
+			id_eleve = student[index];
 		
-		console.log(status.val());
-
-		if (status.val() == "present") {
-			id_eleve.presence += 1;
-		} else if (status.val() == "retard"){
-			id_eleve.retard += 1;
-		} else {
-			id_eleve.absence += 1;
-		}
-
-
+		id_eleve.presence += 1;
 
 		return init(student);		
+	})
+
+	$('.set_retard').on('click', function(){
+		let index = $( ".set_retard" ).index( this ),
+			id_eleve = student[index];
+		
+		id_eleve.retard += 1;
+
+		return init(student);		
+	})
+
+	$('.set_absent').on('click', function(){
+		let index = $( ".set_absent" ).index( this ),
+			id_eleve = student[index];
+		
+		id_eleve.absence += 1;
+
+		return init(student);		
+	})
+
+
+
+	$('.modify').on('click', function(){
+		let mod = student[get_id];
+
+		mod.nom = $('#nom').val();
+		mod.prenom = $('#prenom').val();
+		mod.mail = $('#mail').val();
+
+		return init(student);
 	})
 
 
@@ -70,10 +88,13 @@ export default function init(student){
 
 	function card(id){
 		let put = student[id];
-		$('#nom').text(put.nom);
-		$('#prenom').text(put.prenom);
+
+		put.score = (put.presence * 10) + (put.retard * (-2))+ (put.absence * (-10)) + (put.participation * 5) + (put.tableau * 8);
+
+		$('#nom').val(put.nom);
+		$('#prenom').val(put.prenom);
 		$('#image').css('background-image', 'url('+put.image+')');
-		$('#mail').attr('href', 'mailto:'+put.mail).text(put.mail);
+		$('#mail').val(put.mail);
 
 		$('#score').text(put.score);
 		$('#presence').text(put.presence);
@@ -81,6 +102,87 @@ export default function init(student){
 		$('#absence').text(put.absence);
 		$('#participation').text(put.participation);
 		$('#tableau').text(put.tableau);
-
 	}
+
+	function modif_card(get_id){
+		$('.presence .moins').on('click', function(){
+			student[get_id].presence -= 1;
+
+			if (student[get_id].presence <= 0) {
+				student[get_id].presence = 0;
+			}
+
+			return card(get_id);
+		})
+
+		$('.retard .moins').on('click', function(){
+			student[get_id].retard -= 1;
+
+			if (student[get_id].retard <= 0) {
+				student[get_id].retard = 0;
+			}
+
+			return card(get_id);
+		})
+
+		$('.absence .moins').on('click', function(){
+			student[get_id].absence -= 1;
+
+			if (student[get_id].absence <= 0) {
+				student[get_id].absence = 0;
+			}
+
+			return card(get_id);
+		})
+
+		$('.participation .moins').on('click', function(){
+			student[get_id].participation -= 1;
+
+			if (student[get_id].participation <= 0) {
+				student[get_id].participation = 0;
+			}
+
+			return card(get_id);
+		})
+
+		$('.tableau .moins').on('click', function(){
+			student[get_id].tableau -= 1;
+
+			if (student[get_id].tableau <= 0) {
+				student[get_id].tableau = 0;
+			}
+
+			return card(get_id);
+		})
+
+		$('.presence .plus').on('click', function(){
+			student[get_id].presence += 1;
+
+			return card(get_id);
+		})
+
+		$('.retard .plus').on('click', function(){
+			student[get_id].retard += 1;
+
+			return card(get_id);
+		})
+
+		$('.absence .plus').on('click', function(){
+			student[get_id].absence += 1;
+
+			return card(get_id);
+		})
+
+		$('.participation .plus').on('click', function(){
+			student[get_id].participation += 1;
+
+			return card(get_id);
+		})
+
+		$('.tableau .plus').on('click', function(){
+			student[get_id].tableau += 1;
+
+			return card(get_id);
+		})
+	};
 }

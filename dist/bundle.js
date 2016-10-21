@@ -87,6 +87,8 @@
 
 		var list_student = student;
 
+		var get_id = 0;
+
 		var $liste = (0, _jquery2.default)('.liste'),
 		    $one = $liste.children('li').detach();
 
@@ -95,21 +97,21 @@
 			var li = $one.clone(),
 			    eleve = list_student[j];
 
-			eleve.score = eleve.presence * 10 + eleve.retard * -2 + eleve.absence * -10 + eleve.participation * 5 + eleve.tableau * 8;
-
 			eleve.id = j;
 
-			var ajout = '<li class="eleve eleve' + j + '"><div class="col-md-4 pad12">' + eleve.prenom + ' ' + eleve.nom + '</div>' + '<div class="col-md-4 pad12">' + eleve.score + '</div>' + '<div class="col-md-4 status">' + '<label for="present" class="present pad5"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>' + '<input type="radio" name="checkbox' + j + '" value="present">' + '<label for="retard" class="retard pad5"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></i></label>' + '<input type="radio" name="checkbox' + j + '" value="retard">' + '<label for="absent" class="absent pad5"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></i></label>' + '<input type="radio" name="checkbox' + j + '" value="absent"></div></li>';
+			var ajout = '<li class="eleve eleve' + j + '"><div class="col-md-4 pad12 nom_prenom">' + eleve.prenom + ' ' + eleve.nom + '</div>' + '<div class="col-md-4 pad12">' + eleve.mail + '</div>' + '<div class="col-md-4 status">' + '<i class="fa fa-check-circle fa-2x set_present pad5" aria-hidden="true"></i>' + '<i class="fa fa-clock-o fa-2x set_retard pad5" aria-hidden="true"></i>' + '<i class="fa fa-ban fa-2x set_absent pad5" aria-hidden="true"></i></div></li>';
 
 			$liste.append(ajout);
 		};
 
 		(0, _jquery2.default)(".eleve0").toggleClass('selected');
 		card(0);
+		modif_card(get_id);
 
 		(0, _jquery2.default)('.liste').on('click', 'li', function () {
 			var index = (0, _jquery2.default)(".liste li").index(this),
-			    id_eleve = list_student[index];
+			    id_eleve = list_student[index],
+			    get_id = index;
 
 			(0, _jquery2.default)(".selected").toggleClass('selected');
 			(0, _jquery2.default)(".eleve" + index).toggleClass('selected');
@@ -120,30 +122,52 @@
 			});
 		});
 
-		(0, _jquery2.default)('.status').on('click', function () {
-			var index = (0, _jquery2.default)(".status").index(this),
-			    id_eleve = student[index],
-			    status = (0, _jquery2.default)('input:radio[name=checkbox' + index + ']:checked');
+		(0, _jquery2.default)('.set_present').on('click', function () {
+			var index = (0, _jquery2.default)(".set_present").index(this),
+			    id_eleve = student[index];
 
-			console.log(status.val());
+			id_eleve.presence += 1;
 
-			if (status.val() == "present") {
-				id_eleve.presence += 1;
-			} else if (status.val() == "retard") {
-				id_eleve.retard += 1;
-			} else {
-				id_eleve.absence += 1;
-			}
+			return init(student);
+		});
+
+		(0, _jquery2.default)('.set_retard').on('click', function () {
+			var index = (0, _jquery2.default)(".set_retard").index(this),
+			    id_eleve = student[index];
+
+			id_eleve.retard += 1;
+
+			return init(student);
+		});
+
+		(0, _jquery2.default)('.set_absent').on('click', function () {
+			var index = (0, _jquery2.default)(".set_absent").index(this),
+			    id_eleve = student[index];
+
+			id_eleve.absence += 1;
+
+			return init(student);
+		});
+
+		(0, _jquery2.default)('.modify').on('click', function () {
+			var mod = student[get_id];
+
+			mod.nom = (0, _jquery2.default)('#nom').val();
+			mod.prenom = (0, _jquery2.default)('#prenom').val();
+			mod.mail = (0, _jquery2.default)('#mail').val();
 
 			return init(student);
 		});
 
 		function card(id) {
 			var put = student[id];
-			(0, _jquery2.default)('#nom').text(put.nom);
-			(0, _jquery2.default)('#prenom').text(put.prenom);
+
+			put.score = put.presence * 10 + put.retard * -2 + put.absence * -10 + put.participation * 5 + put.tableau * 8;
+
+			(0, _jquery2.default)('#nom').val(put.nom);
+			(0, _jquery2.default)('#prenom').val(put.prenom);
 			(0, _jquery2.default)('#image').css('background-image', 'url(' + put.image + ')');
-			(0, _jquery2.default)('#mail').attr('href', 'mailto:' + put.mail).text(put.mail);
+			(0, _jquery2.default)('#mail').val(put.mail);
 
 			(0, _jquery2.default)('#score').text(put.score);
 			(0, _jquery2.default)('#presence').text(put.presence);
@@ -152,6 +176,88 @@
 			(0, _jquery2.default)('#participation').text(put.participation);
 			(0, _jquery2.default)('#tableau').text(put.tableau);
 		}
+
+		function modif_card(get_id) {
+			(0, _jquery2.default)('.presence .moins').on('click', function () {
+				student[get_id].presence -= 1;
+
+				if (student[get_id].presence <= 0) {
+					student[get_id].presence = 0;
+				}
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.retard .moins').on('click', function () {
+				student[get_id].retard -= 1;
+
+				if (student[get_id].retard <= 0) {
+					student[get_id].retard = 0;
+				}
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.absence .moins').on('click', function () {
+				student[get_id].absence -= 1;
+
+				if (student[get_id].absence <= 0) {
+					student[get_id].absence = 0;
+				}
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.participation .moins').on('click', function () {
+				student[get_id].participation -= 1;
+
+				if (student[get_id].participation <= 0) {
+					student[get_id].participation = 0;
+				}
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.tableau .moins').on('click', function () {
+				student[get_id].tableau -= 1;
+
+				if (student[get_id].tableau <= 0) {
+					student[get_id].tableau = 0;
+				}
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.presence .plus').on('click', function () {
+				student[get_id].presence += 1;
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.retard .plus').on('click', function () {
+				student[get_id].retard += 1;
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.absence .plus').on('click', function () {
+				student[get_id].absence += 1;
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.participation .plus').on('click', function () {
+				student[get_id].participation += 1;
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.tableau .plus').on('click', function () {
+				student[get_id].tableau += 1;
+
+				return card(get_id);
+			});
+		};
 	}
 
 /***/ },
@@ -10427,7 +10533,6 @@
 
 			var add_student = new _student4.default(new_nom, new_prenom, new_img, new_mail);
 			student.push(add_student);
-
 			add.fadeOut();
 			(0, _student2.default)(student);
 

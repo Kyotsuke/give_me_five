@@ -24,7 +24,7 @@
 					<!-- Propritétés liste -->
 						<li>
 							<div class="col-md-4"><h2>NOM</h2></div>
-							<div class="col-md-4"><h2>SCORE</h2></div>
+							<div class="col-md-4"><h2>MAIL</h2></div>
 							<div class="col-md-4"><h2>STATUS</h2></div>
 						</li>
 					</ul>
@@ -36,13 +36,13 @@
 							<div class="col-md-4"></div>
 							<div class="col-md-4"></div>
 							<div class="col-md-4">
-								<label for="present" class="present"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>
+								<label for="present" class="set_present"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></label>
 								<input type="radio" name="checkbox">
 
-								<label for="retard" class="retard"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></i></label>
+								<label for="retard" class="set_retard"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></label>
 								<input type="radio" name="checkbox">
 
-								<label for="absent" class="absent"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></i></label>
+								<label for="absent" class="set_absent"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></label>
 								<input type="radio" name="checkbox">
 							</div>
 						</li>
@@ -59,7 +59,7 @@
 						<br>
 
 					<label for="img_link">Liens de l'image :</label>
-					<input type="text" name="img_link" placeholder="images/jean.jpg ou http://givemefive.fr/jean.jpg" id="input_img">
+					<input type="file" name="img_link" accept="image/*" id="input_img">
 						
 					<label for="mail">E-Mail :</label>
 					<input type="text" name="mail" placeholder="jean-charlounet@gmail.com" id="input_mail">
@@ -80,19 +80,19 @@
 					<div class="col-md-4 col-md-offset-1 gauche">
 					<!-- Nom -->
 						<div class="col-md-12">
-							<h3 id="nom"></h3>
+							<input type="text" id="nom"></input>
 						</div>
 					<!-- Prénom -->
 						<div class="col-md-12">
-							<h3 id="prenom"></h3>
+							<input type="text" id="prenom"></input>
 						</div>
 					<!-- Image utilisateur -->
 						<div class="col-md-12">
 							<div id="image"></div>
 						</div>
 					<!-- Adresse mail -->
-						<div class="col-md-12">
-							<p>Mail : <a href="mailto:zaeaze" id="mail">azerty@gmail.com</a></p>
+						<div class="col-md-12 profil_mail">
+							<p>Mail : <input type="text" id="mail"></input></p>
 						</div>
 					<!-- Bouton modifier -->
 						<div class="col-md-12">
@@ -101,34 +101,87 @@
 					</div>
 
 				<!-- Partie droite -->
-					<div class="col-md-4 col-md-offset-2 droite">
+					<div class="col-md-5 col-md-offset-1 droite">
 					<!-- Espacement -->
-						<div class="col-md-12 pad70">
+						<div class="col-md-12 pad30">
 							
 						</div>
-					<!-- Score total -->
 						<div class="col-md-12">
-							<h4>Score : <span id="score"></span></h4>
-						</div>
-					<!-- Nombre de présences totales -->
-						<div class="col-md-12">
-							<h4>Nombre de présences : <span id="presence"></span></h4>
-						</div>
-					<!-- Nombre de retards total -->
-						<div class="col-md-12">
-							<h4>Nombre de retards : <span id="retard"></span></h4>
-						</div>
-					<!-- Nombre d'absences totales -->
-						<div class="col-md-12">
-							<h4>Nombre d'absences : <span id="absence"></span></h4>
-						</div>
-					<!-- Nombre de participations totales -->
-						<div class="col-md-12">
-							<h4>Participations : <span id="participation"></span></h4>
-						</div>
-					<!-- Nombre de passage au tableau total -->
-						<div class="col-md-12">
-							<h4>Passage au tableau : <span id="tableau"></span></h4>
+							<table>
+								<tbody>
+									<tr class="score">
+										<td>
+											
+										</td>
+										<td>
+											<h4>Score : <span id="score"></span></h4>
+										</td>
+										<td>
+											
+										</td>
+									</tr>
+
+									<tr class="presence">
+										<td>
+											<i class="fa fa-minus-square-o rouge moins" aria-hidden="true"></i>
+										</td>
+										<td>
+											Nombre de présences : <span id="presence"></span>
+										</td>
+										<td>
+											<i class="fa fa-plus-square-o vert plus" aria-hidden="true"></i>
+										</td>
+									</tr>
+
+									<tr class="retard">
+										<td>
+											<i class="fa fa-minus-square-o rouge moins" aria-hidden="true"></i>
+										</td>
+										<td>
+											Nombre de retards : <span id="retard"></span>
+										</td>
+										<td>
+											<i class="fa fa-plus-square-o vert plus" aria-hidden="true"></i>
+										</td>
+									</tr>
+
+									<tr class="absence">
+										<td>
+											<i class="fa fa-minus-square-o rouge moins" aria-hidden="true"></i>
+										</td>
+										<td>
+											Nombre d'absences : <span id="absence"></span>
+										</td>
+										<td>
+											<i class="fa fa-plus-square-o vert plus" aria-hidden="true"></i>
+										</td>
+									</tr>
+
+									<tr class="participation">
+										<td>
+											<i class="fa fa-minus-square-o rouge moins" aria-hidden="true"></i>
+										</td>
+										<td>
+											Participations : <span id="participation"></span>
+										</td>
+										<td>
+											<i class="fa fa-plus-square-o vert plus" aria-hidden="true"></i>
+										</td>
+									</tr>
+
+									<tr class="tableau">
+										<td>
+											<i class="fa fa-minus-square-o rouge moins" aria-hidden="true"></i>
+										</td>
+										<td>
+											Passage au tableau : <span id="tableau"></span>
+										</td>
+										<td>
+											<i class="fa fa-plus-square-o vert plus" aria-hidden="true"></i>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>

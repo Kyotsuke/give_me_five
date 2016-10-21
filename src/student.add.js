@@ -25,7 +25,6 @@ export default function ajouter(student){
 
 		let add_student = new Student(new_nom, new_prenom, new_img, new_mail);
 		student.push(add_student);
-		
 		add.fadeOut();
 		init(student);
 
