@@ -26,8 +26,124 @@ export default function init(student){
 		$liste.append(ajout);
 	};
 
+
+
+
+	function card(id){
+		let put = student[id];
+
+		put.score = (put.presence * 10) + (put.retard * (-2))+ (put.absence * (-10)) + (put.participation * 5) + (put.tableau * 8);
+
+		$('#nom').val(put.nom);
+		$('#prenom').val(put.prenom);
+		$('#image').css('background-image', 'url('+put.image+')');
+		$('#mail').val(put.mail);
+
+		$('#score').text(put.score);
+		$('#presence').text(put.presence);
+		$('#retard').text(put.retard);
+		$('#absence').text(put.absence);
+		$('#participation').text(put.participation);
+		$('#tableau').text(put.tableau);
+	}
+
+	function modif_card(get_id){
+		let elv = student[get_id];
+
+		$('.presence .moins').on('click', function(){
+			elv.presence -= 1;
+
+			if (elv.presence <= 0) {
+				elv.presence = 0;
+			}
+
+			console.log(get_id);
+
+			return card(get_id);
+		})
+
+		$('.retard .moins').on('click', function(){
+			elv.retard -= 1;
+
+			if (elv.retard <= 0) {
+				elv.retard = 0;
+			}
+
+			return card(get_id);
+		})
+
+		$('.absence .moins').on('click', function(){
+			elv.absence -= 1;
+
+			if (elv.absence <= 0) {
+				elv.absence = 0;
+			}
+
+			return card(get_id);
+		})
+
+		$('.participation .moins').on('click', function(){
+			elv.participation -= 1;
+
+			if (elv.participation <= 0) {
+				elv.participation = 0;
+			}
+
+			return card(get_id);
+		})
+
+		$('.tableau .moins').on('click', function(){
+			elv.tableau -= 1;
+
+			if (elv.tableau <= 0) {
+				elv.tableau = 0;
+			}
+
+			return card(get_id);
+		})
+
+		$('.presence .plus').on('click', function(){
+			elv.presence += 1;
+
+			return card(get_id);
+		})
+
+		$('.retard .plus').on('click', function(){
+			elv.retard += 1;
+
+			return card(get_id);
+		})
+
+		$('.absence .plus').on('click', function(){
+			elv.absence += 1;
+
+			return card(get_id);
+		})
+
+		$('.participation .plus').on('click', function(){
+			elv.participation += 1;
+
+			return card(get_id);
+		})
+
+		$('.tableau .plus').on('click', function(){
+			elv.tableau += 1;
+
+			return card(get_id);
+		})
+		
+		$('.modify').on('click', function(){
+
+			elv.nom = $('#nom').val();
+			elv.prenom = $('#prenom').val();
+			elv.mail = $('#mail').val();
+
+			return init(student);
+		})
+	};
+
 	$(".eleve0").toggleClass('selected');
-	card(0);
+	card(get_id);
 	modif_card(get_id);
 
 	$('.liste').on('click', 'li', function(){
@@ -35,10 +151,14 @@ export default function init(student){
 			id_eleve = list_student[index],
 			get_id = index;
 
+		console.log(get_id);
+
 		$(".selected").toggleClass('selected');
-		$(".eleve"+index).toggleClass('selected');
+		$(".eleve"+get_id).toggleClass('selected');
 		$('.profil').fadeOut(500, function(){
-			card(index);
+			card(get_id);
+
+			modif_card(get_id);
 
 			$('.profil').fadeIn(500);
 		})
@@ -70,119 +190,4 @@ export default function init(student){
 
 		return init(student);		
 	})
-
-
-
-	$('.modify').on('click', function(){
-		let mod = student[get_id];
-
-		mod.nom = $('#nom').val();
-		mod.prenom = $('#prenom').val();
-		mod.mail = $('#mail').val();
-
-		return init(student);
-	})
-
-
-
-
-	function card(id){
-		let put = student[id];
-
-		put.score = (put.presence * 10) + (put.retard * (-2))+ (put.absence * (-10)) + (put.participation * 5) + (put.tableau * 8);
-
-		$('#nom').val(put.nom);
-		$('#prenom').val(put.prenom);
-		$('#image').css('background-image', 'url('+put.image+')');
-		$('#mail').val(put.mail);
-
-		$('#score').text(put.score);
-		$('#presence').text(put.presence);
-		$('#retard').text(put.retard);
-		$('#absence').text(put.absence);
-		$('#participation').text(put.participation);
-		$('#tableau').text(put.tableau);
-	}
-
-	function modif_card(get_id){
-		$('.presence .moins').on('click', function(){
-			student[get_id].presence -= 1;
-
-			if (student[get_id].presence <= 0) {
-				student[get_id].presence = 0;
-			}
-
-			return card(get_id);
-		})
-
-		$('.retard .moins').on('click', function(){
-			student[get_id].retard -= 1;
-
-			if (student[get_id].retard <= 0) {
-				student[get_id].retard = 0;
-			}
-
-			return card(get_id);
-		})
-
-		$('.absence .moins').on('click', function(){
-			student[get_id].absence -= 1;
-
-			if (student[get_id].absence <= 0) {
-				student[get_id].absence = 0;
-			}
-
-			return card(get_id);
-		})
-
-		$('.participation .moins').on('click', function(){
-			student[get_id].participation -= 1;
-
-			if (student[get_id].participation <= 0) {
-				student[get_id].participation = 0;
-			}
-
-			return card(get_id);
-		})
-
-		$('.tableau .moins').on('click', function(){
-			student[get_id].tableau -= 1;
-
-			if (student[get_id].tableau <= 0) {
-				student[get_id].tableau = 0;
-			}
-
-			return card(get_id);
-		})
-
-		$('.presence .plus').on('click', function(){
-			student[get_id].presence += 1;
-
-			return card(get_id);
-		})
-
-		$('.retard .plus').on('click', function(){
-			student[get_id].retard += 1;
-
-			return card(get_id);
-		})
-
-		$('.absence .plus').on('click', function(){
-			student[get_id].absence += 1;
-
-			return card(get_id);
-		})
-
-		$('.participation .plus').on('click', function(){
-			student[get_id].participation += 1;
-
-			return card(get_id);
-		})
-
-		$('.tableau .plus').on('click', function(){
-			student[get_id].tableau += 1;
-
-			return card(get_id);
-		})
-	};
 }

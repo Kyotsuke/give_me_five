@@ -104,8 +104,121 @@
 			$liste.append(ajout);
 		};
 
+		function card(id) {
+			var put = student[id];
+
+			put.score = put.presence * 10 + put.retard * -2 + put.absence * -10 + put.participation * 5 + put.tableau * 8;
+
+			(0, _jquery2.default)('#nom').val(put.nom);
+			(0, _jquery2.default)('#prenom').val(put.prenom);
+			(0, _jquery2.default)('#image').css('background-image', 'url(' + put.image + ')');
+			(0, _jquery2.default)('#mail').val(put.mail);
+
+			(0, _jquery2.default)('#score').text(put.score);
+			(0, _jquery2.default)('#presence').text(put.presence);
+			(0, _jquery2.default)('#retard').text(put.retard);
+			(0, _jquery2.default)('#absence').text(put.absence);
+			(0, _jquery2.default)('#participation').text(put.participation);
+			(0, _jquery2.default)('#tableau').text(put.tableau);
+		}
+
+		function modif_card(get_id) {
+			var elv = student[get_id];
+
+			(0, _jquery2.default)('.presence .moins').on('click', function () {
+				elv.presence -= 1;
+
+				if (elv.presence <= 0) {
+					elv.presence = 0;
+				}
+
+				console.log(get_id);
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.retard .moins').on('click', function () {
+				elv.retard -= 1;
+
+				if (elv.retard <= 0) {
+					elv.retard = 0;
+				}
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.absence .moins').on('click', function () {
+				elv.absence -= 1;
+
+				if (elv.absence <= 0) {
+					elv.absence = 0;
+				}
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.participation .moins').on('click', function () {
+				elv.participation -= 1;
+
+				if (elv.participation <= 0) {
+					elv.participation = 0;
+				}
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.tableau .moins').on('click', function () {
+				elv.tableau -= 1;
+
+				if (elv.tableau <= 0) {
+					elv.tableau = 0;
+				}
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.presence .plus').on('click', function () {
+				elv.presence += 1;
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.retard .plus').on('click', function () {
+				elv.retard += 1;
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.absence .plus').on('click', function () {
+				elv.absence += 1;
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.participation .plus').on('click', function () {
+				elv.participation += 1;
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.tableau .plus').on('click', function () {
+				elv.tableau += 1;
+
+				return card(get_id);
+			});
+
+			(0, _jquery2.default)('.modify').on('click', function () {
+
+				elv.nom = (0, _jquery2.default)('#nom').val();
+				elv.prenom = (0, _jquery2.default)('#prenom').val();
+				elv.mail = (0, _jquery2.default)('#mail').val();
+
+				return init(student);
+			});
+		};
+
 		(0, _jquery2.default)(".eleve0").toggleClass('selected');
-		card(0);
+		card(get_id);
 		modif_card(get_id);
 
 		(0, _jquery2.default)('.liste').on('click', 'li', function () {
@@ -113,10 +226,14 @@
 			    id_eleve = list_student[index],
 			    get_id = index;
 
+			console.log(get_id);
+
 			(0, _jquery2.default)(".selected").toggleClass('selected');
-			(0, _jquery2.default)(".eleve" + index).toggleClass('selected');
+			(0, _jquery2.default)(".eleve" + get_id).toggleClass('selected');
 			(0, _jquery2.default)('.profil').fadeOut(500, function () {
-				card(index);
+				card(get_id);
+
+				modif_card(get_id);
 
 				(0, _jquery2.default)('.profil').fadeIn(500);
 			});
@@ -148,116 +265,6 @@
 
 			return init(student);
 		});
-
-		(0, _jquery2.default)('.modify').on('click', function () {
-			var mod = student[get_id];
-
-			mod.nom = (0, _jquery2.default)('#nom').val();
-			mod.prenom = (0, _jquery2.default)('#prenom').val();
-			mod.mail = (0, _jquery2.default)('#mail').val();
-
-			return init(student);
-		});
-
-		function card(id) {
-			var put = student[id];
-
-			put.score = put.presence * 10 + put.retard * -2 + put.absence * -10 + put.participation * 5 + put.tableau * 8;
-
-			(0, _jquery2.default)('#nom').val(put.nom);
-			(0, _jquery2.default)('#prenom').val(put.prenom);
-			(0, _jquery2.default)('#image').css('background-image', 'url(' + put.image + ')');
-			(0, _jquery2.default)('#mail').val(put.mail);
-
-			(0, _jquery2.default)('#score').text(put.score);
-			(0, _jquery2.default)('#presence').text(put.presence);
-			(0, _jquery2.default)('#retard').text(put.retard);
-			(0, _jquery2.default)('#absence').text(put.absence);
-			(0, _jquery2.default)('#participation').text(put.participation);
-			(0, _jquery2.default)('#tableau').text(put.tableau);
-		}
-
-		function modif_card(get_id) {
-			(0, _jquery2.default)('.presence .moins').on('click', function () {
-				student[get_id].presence -= 1;
-
-				if (student[get_id].presence <= 0) {
-					student[get_id].presence = 0;
-				}
-
-				return card(get_id);
-			});
-
-			(0, _jquery2.default)('.retard .moins').on('click', function () {
-				student[get_id].retard -= 1;
-
-				if (student[get_id].retard <= 0) {
-					student[get_id].retard = 0;
-				}
-
-				return card(get_id);
-			});
-
-			(0, _jquery2.default)('.absence .moins').on('click', function () {
-				student[get_id].absence -= 1;
-
-				if (student[get_id].absence <= 0) {
-					student[get_id].absence = 0;
-				}
-
-				return card(get_id);
-			});
-
-			(0, _jquery2.default)('.participation .moins').on('click', function () {
-				student[get_id].participation -= 1;
-
-				if (student[get_id].participation <= 0) {
-					student[get_id].participation = 0;
-				}
-
-				return card(get_id);
-			});
-
-			(0, _jquery2.default)('.tableau .moins').on('click', function () {
-				student[get_id].tableau -= 1;
-
-				if (student[get_id].tableau <= 0) {
-					student[get_id].tableau = 0;
-				}
-
-				return card(get_id);
-			});
-
-			(0, _jquery2.default)('.presence .plus').on('click', function () {
-				student[get_id].presence += 1;
-
-				return card(get_id);
-			});
-
-			(0, _jquery2.default)('.retard .plus').on('click', function () {
-				student[get_id].retard += 1;
-
-				return card(get_id);
-			});
-
-			(0, _jquery2.default)('.absence .plus').on('click', function () {
-				student[get_id].absence += 1;
-
-				return card(get_id);
-			});
-
-			(0, _jquery2.default)('.participation .plus').on('click', function () {
-				student[get_id].participation += 1;
-
-				return card(get_id);
-			});
-
-			(0, _jquery2.default)('.tableau .plus').on('click', function () {
-				student[get_id].tableau += 1;
-
-				return card(get_id);
-			});
-		};
 	}
 
 /***/ },
